@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>Umbrella Access Point</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     body {
       background-color: #000;
@@ -10,22 +11,32 @@
       font-family: 'Courier New', monospace;
       text-align: center;
       padding: 50px 20px;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
     }
 
     img {
-      width: 120px;
+      width: 140px; /* aumentado de 120px */
       margin-bottom: 30px;
+      max-width: 90vw;
+      height: auto;
     }
 
     .mensaje {
       font-size: 1.4em;
       margin-bottom: 20px;
+      max-width: 90vw;
+      word-wrap: break-word;
     }
 
     a.boton, button.boton {
       display: inline-block;
       margin-top: 30px;
-      padding: 10px 20px;
+      padding: 12px 24px;
       background-color: #e00;
       color: #fff;
       text-decoration: none;
@@ -34,27 +45,100 @@
       border: none;
       cursor: pointer;
       font-family: 'Courier New', monospace;
-      font-size: 1em;
+      font-size: 1.1em;
       transition: background-color 0.3s;
+      min-width: 180px;
+      user-select: none;
+      box-shadow: 0 0 8px #e00;
     }
 
     a.boton:hover, button.boton:hover {
       background-color: #a00;
+      box-shadow: 0 0 15px #a00;
     }
 
-    #infoTrabajador {
+    .info-box {
       margin-top: 30px;
       background: #111;
       color: #e00;
       padding: 20px;
-      max-width: 450px;
-      margin-left: auto;
-      margin-right: auto;
-      border-radius: 8px;
+      width: 90vw;
+      max-width: 400px;
+      border-radius: 12px;
       text-align: left;
-      font-size: 1em;
+      font-size: 1.1em;
       white-space: pre-wrap;
+      box-shadow:
+        inset 0 0 15px #e00,
+        0 0 20px #700000;
+      font-weight: 600;
+      line-height: 1.5;
       display: none;
+      user-select: text;
+    }
+
+    #infoTrabajador {
+      height: 400px;
+      overflow-y: auto;
+      animation: techGlow 3s ease-in-out infinite alternate;
+    }
+
+    #infoMision, #infoAlertas {
+      height: auto;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+
+    #infoAlertas {
+      font-weight: 700;
+      animation: alertaBlink 1.5s linear infinite;
+    }
+
+    .info-title {
+      font-size: 1.3em;
+      font-weight: bold;
+      border-bottom: 2px solid #e00;
+      margin-bottom: 10px;
+      padding-bottom: 4px;
+    }
+
+    .copyright {
+      margin-top: 40px;
+      font-size: 0.9em;
+      color: #700000;
+      font-style: italic;
+      user-select: none;
+    }
+
+    @keyframes techGlow {
+      0% { box-shadow:
+        inset 0 0 10px #e00,
+        0 0 15px #900000;}
+      100% { box-shadow:
+        inset 0 0 20px #ff3300,
+        0 0 30px #ff0000;}
+    }
+
+    @keyframes alertaBlink {
+      0%, 100% { color: #e00; }
+      50% { color: #ff5555; }
+    }
+
+    /* Responsive: para pantallas pequeñas */
+    @media (max-width: 480px) {
+      body {
+        padding: 30px 10px;
+      }
+      #infoTrabajador {
+        height: auto;
+        max-height: 70vh;
+        font-size: 1em;
+      }
+      a.boton, button.boton {
+        min-width: 150px;
+        padding: 10px 18px;
+        font-size: 1em;
+      }
     }
   </style>
 </head>
@@ -62,18 +146,38 @@
   <img src="LOGO.png" alt="Umbrella Logo" />
   <div class="mensaje">Usuario BL1GHT conectado.</div>
 
-  <button class="boton" id="btnLogin">Iniciar sesión</button>
+  <button class="boton" id="btnLogin">Verificar</button> 
 
-  <div id="infoTrabajador">
+  <div id="infoTrabajador" class="info-box"></div>
+  <div id="infoMision" class="info-box">
+    <div class="info-title">Misión Umbrella Corporation</div>
+    Avanzar en investigación biotecnológica para el bienestar global.  
+    Innovación, control y expansión de proyectos especiales.
+  </div>
+  <div id="infoAlertas" class="info-box">
+    <div class="info-title">Alertas Activas</div>
+    • Protocolo Zeta activado  
+    • Nivel de seguridad aumentado  
+    • Acceso restringido a personal autorizado
+  </div>
+
+  <div class="copyright">
+    &copy; 2025 Umbrella Corporation.  
+    “La obediencia trae disciplina. La disciplina trae unidad. La unidad trae poder. Y el poder trae la vida.”
   </div>
 
   <script>
     const btnLogin = document.getElementById('btnLogin');
-    const infoDiv = document.getElementById('infoTrabajador');
+    const infoTrabajador = document.getElementById('infoTrabajador');
+    const infoMision = document.getElementById('infoMision');
+    const infoAlertas = document.getElementById('infoAlertas');
 
     btnLogin.addEventListener('click', () => {
-      infoDiv.style.display = 'block';
-      infoDiv.textContent = `
+      infoTrabajador.style.display = 'block';
+      infoMision.style.display = 'block';
+      infoAlertas.style.display = 'block';
+
+      infoTrabajador.textContent = `
 ╔════════════════════════════╗
 ║       Información de       ║
 ║      Trabajador BL1GHT-1   ║
@@ -85,11 +189,11 @@ Departamento: Investigación - Microbiología
 Acceso: Nivel 3 - Laboratorio
 Último acceso: 08/03/2025 10:15
 Estado: Activo
-`;
+      `;
+
       btnLogin.disabled = true;
-      btnLogin.textContent = 'Sesión iniciada';
+      btnLogin.textContent = 'Acceso permitido'; 
     });
   </script>
 </body>
 </html>
-
