@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Umbrella Access Point</title>
   <style>
     body {
@@ -22,7 +22,7 @@
       margin-bottom: 20px;
     }
 
-    a.boton {
+    a.boton, button.boton {
       display: inline-block;
       margin-top: 30px;
       padding: 10px 20px;
@@ -31,18 +31,65 @@
       text-decoration: none;
       border-radius: 5px;
       font-weight: bold;
+      border: none;
+      cursor: pointer;
+      font-family: 'Courier New', monospace;
+      font-size: 1em;
+      transition: background-color 0.3s;
     }
 
-    a.boton:hover {
+    a.boton:hover, button.boton:hover {
       background-color: #a00;
+    }
+
+    #infoTrabajador {
+      margin-top: 30px;
+      background: #111;
+      color: #e00;
+      padding: 20px;
+      max-width: 450px;
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: 8px;
+      text-align: left;
+      font-size: 1em;
+      white-space: pre-wrap;
+      display: none;
     }
   </style>
 </head>
 <body>
-  <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/95/Umbrella_Corporation_logo.svg/800px-Umbrella_Corporation_logo.svg.png" alt="Umbrella Logo">
-  <div class="mensaje">Unidad UMB-042 conectada.</div>
+  <img src="LOGO.png" alt="Umbrella Logo" />
+  <div class="mensaje">Usuario BL1GHT conectado.</div>
 
-  <!-- <a class="boton" href="Youtube, ah" target="_blank">Iniciar protocolo</a> -->
+  <button class="boton" id="btnLogin">Iniciar sesión</button>
 
+  <div id="infoTrabajador">
+  </div>
+
+  <script>
+    const btnLogin = document.getElementById('btnLogin');
+    const infoDiv = document.getElementById('infoTrabajador');
+
+    btnLogin.addEventListener('click', () => {
+      infoDiv.style.display = 'block';
+      infoDiv.textContent = `
+╔════════════════════════════╗
+║       Información de       ║
+║      Trabajador BL1GHT-1   ║
+╚════════════════════════════╝
+
+Nombre: Ignacio Escudero
+ID: 220522
+Departamento: Investigación - Microbiología
+Acceso: Nivel 3 - Laboratorio
+Último acceso: 08/03/2025 10:15
+Estado: Activo
+`;
+      btnLogin.disabled = true;
+      btnLogin.textContent = 'Sesión iniciada';
+    });
+  </script>
 </body>
 </html>
+
