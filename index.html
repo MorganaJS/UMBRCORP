@@ -59,34 +59,40 @@
 
     .info-box {
       margin-top: 30px;
-      background: #111;
       color: #e00;
       padding: 20px;
       width: 90vw;
       max-width: 400px;
-      border-radius: 12px;
       text-align: left;
       font-size: 1.1em;
       white-space: pre-wrap;
-      box-shadow:
-        inset 0 0 15px #e00,
-        0 0 20px #700000;
       font-weight: 600;
       line-height: 1.5;
-      display: none;
       user-select: text;
     }
 
     #infoTrabajador {
+      background: #111;
+      border-radius: 12px;
+      box-shadow:
+        inset 0 0 15px #e00,
+        0 0 20px #700000;
       height: 400px;
       overflow-y: auto;
       animation: techGlow 3s ease-in-out infinite alternate;
+      display: none;
     }
 
     #infoMision, #infoAlertas {
+      background: none;
+      box-shadow: none;
+      padding: 0;
+      max-height: none;
+      overflow: visible;
       height: auto;
-      max-height: 200px;
-      overflow-y: visible;
+      margin-top: 10px;
+      font-weight: 600;
+      display: none;
     }
 
     #infoAlertas {
@@ -148,15 +154,17 @@
   <button class="boton" id="btnLogin">Verificar</button> 
 
   <div id="infoTrabajador" class="info-box"></div>
+
   <div id="infoMision" class="info-box">
     <div class="info-title">OBJETIVOS</div>
-    · Contener al organismo VOID-K9.  
+    · Contener al organismo VOID-K9. 
     · Controlar las constantes de MJ.
     ¡¡URGENTE!! REPORTE SU PROGRESO AL SUPERVISOR.
   </div>
+
   <div id="infoAlertas" class="info-box">
     <div class="info-title">Alertas Activas</div>
-    • Protocolo I&M activado  
+    • Protocolo LAB-II LOCKDOWN activado  
     • Nivel de seguridad aumentado  
     • Acceso restringido a personal autorizado
   </div>
@@ -197,3 +205,4 @@ Estado: Activo
   </script>
 </body>
 </html>
+
